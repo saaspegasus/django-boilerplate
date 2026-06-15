@@ -1,6 +1,63 @@
-# Django Boilerplate
+# Django SaaS Boilerplate
 
-The original SaaS Boilerplate for Django, trusted by thousands
+**The original SaaS boilerplate for Django — trusted by thousands.**
+
+A free, open-source, production-grade starting point for your next Django application. Spin up a
+Django app with a modern front-end stack and built-in essentials in minutes.
+Optimized for building in the AI-agent era.
+
+This is the **open-source edition** of [SaaS Pegasus](https://www.saaspegasus.com/), the Django SaaS
+boilerplate that has powered thousands of startups and products since 2019.
+It gives you a real, batteries-included foundation to build on, and a taste of the architecture,
+conventions, and code quality that Pegasus is known for.
+
+> **Building a serious SaaS?**
+> The full version of [SaaS Pegasus](https://www.saaspegasus.com/) adds Stripe subscriptions, teams &
+> multi-tenancy, a host of AI and agent-based capabilities, one-click deployments, and much more.
+> **[See everything Pegasus includes →](https://www.saaspegasus.com/)**
+
+---
+
+## What's included
+
+This boilerplate ships with a complete, modern Django foundation:
+
+- 🐍 **Django on Python 3.14** — a clean, well-organized project structure following Django best practices.
+- 🔐 **Authentication** — sign-up, login, password reset, and email verification via [django-allauth](https://docs.allauth.org/).
+- ⚡ **HTMX + Alpine.js** — single-page-app interactivity without the single-page-app complexity.
+- 🎨 **Tailwind CSS v4 + DaisyUI** — a modern, themeable component library, built with [Vite](https://vite.dev/) via [django-vite](https://github.com/MrBin99/django-vite).
+- 🔌 **REST API** — built on [Django REST Framework](https://www.django-rest-framework.org/) with an auto-generated, OpenAPI-typed client.
+- 🧵 **Background tasks** — [Celery](https://docs.celeryq.dev/) workers and scheduled jobs, backed by Redis.
+- 🐘 **Postgres** — the default database, ready to go.
+- 🐳 **Docker** — local services (Postgres, Redis) wired up with Docker Compose.
+- ✅ **Tooling** — Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
+- 🤖 **AI-ready** — ships with `CLAUDE.md` and built-in skills, so coding agents understand how to work with your codebase out of the box.
+
+## Open-source edition vs. SaaS Pegasus
+
+This repo is a great way to start a project or evaluate the Pegasus approach. When you're ready to
+ship a real product, [SaaS Pegasus](https://www.saaspegasus.com/) picks up where it leaves off:
+
+| Feature | This repo | [SaaS Pegasus](https://www.saaspegasus.com/) |
+| --- | :---: | :---: |
+| Django + Postgres + Celery foundation | ✅ | ✅ |
+| Authentication (allauth) | ✅ | ✅ |
+| REST API (DRF) | ✅ | ✅ |
+| Tailwind + DaisyUI front end | ✅ | ✅ |
+| Docker & CI | ✅ | ✅ |
+| **Stripe subscriptions & billing** | — | ✅ |
+| **Teams & multi-tenancy** | — | ✅ |
+| **AI chat/agent UI and starter apps** | — | ✅ |
+| **One-click deployments** (Render, Fly, Heroku, GCP, AWS…) | — | ✅ |
+| **Social & 2FA login, API keys, user impersonation** | — | ✅ |
+| **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
+| **A configurable code generator** for all of the above | — | ✅ |
+| **Dedicated support & priority fixes** | Community | ✅ |
+| **Comprehensive documentation** | — | ✅ |
+
+**[Compare plans and get started with Pegasus →](https://www.saaspegasus.com/)**
+
+---
 
 ## Quickstart
 
@@ -168,3 +225,24 @@ On Linux-based systems you can watch for changes using the following:
 ```bash
 find . -name '*.py' | entr uv run manage.py test apps.web.tests.test_basic_views
 ```
+
+---
+
+## Documentation
+
+This project is built with [SaaS Pegasus](https://www.saaspegasus.com/), and most of the
+[Pegasus documentation](https://docs.saaspegasus.com/) applies here too — including guides on the
+[code structure](https://docs.saaspegasus.com/code-structure/), front end, APIs, and deployment.
+
+## Support
+
+This open-source edition is provided as-is, and is supported by the community. Issues and pull
+requests are welcome.
+
+For dedicated support, priority bug fixes, and the full feature set, check out
+[SaaS Pegasus](https://www.saaspegasus.com/).
+
+## License
+
+This boilerplate is released under the [MIT License](./LICENSE) — free to use for personal and
+commercial projects.
