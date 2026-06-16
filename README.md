@@ -12,7 +12,7 @@ It gives you a real, batteries-included foundation to build on, and a taste of t
 conventions, and tooling used by SaaS Pegasus projects.
 
 > **Looking for more?**
-> The pro version of [SaaS Pegasus](https://www.saaspegasus.com/) adds Stripe subscriptions, teams &
+> The pro version of SaaS Pegasus adds Stripe subscriptions, teams &
 > multi-tenancy, a host of AI and agent-based capabilities, one-click deployments, and much more.
 > **[See everything Pegasus includes →](https://www.saaspegasus.com/)**
 
@@ -49,7 +49,6 @@ The pro version picks up where it leaves off:
 | **One-click deployments** (Render, Fly, Heroku, GCP, AWS…) | — | ✅ |
 | **Social & 2FA login, API keys, user impersonation** | — | ✅ |
 | **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
-| **A configurable code generator** for all of the above | — | ✅ |
 | **Dedicated support & priority fixes** | Community | ✅ |
 
 **[Compare plans and get started with Pegasus →](https://www.saaspegasus.com/)**
