@@ -9,29 +9,27 @@ Optimized for building in the AI-agent era.
 This is the **open-source edition** of [SaaS Pegasus](https://www.saaspegasus.com/), the Django SaaS
 boilerplate that has powered thousands of startups and products since 2019.
 It gives you a real, batteries-included foundation to build on, and a taste of the architecture,
-conventions, and code quality that Pegasus is known for.
+conventions, and tooling used by SaaS Pegasus projects.
 
-> **Building a serious SaaS?**
-> The full version of [SaaS Pegasus](https://www.saaspegasus.com/) adds Stripe subscriptions, teams &
+> **Looking for more?**
+> The pro version of [SaaS Pegasus](https://www.saaspegasus.com/) adds Stripe subscriptions, teams &
 > multi-tenancy, a host of AI and agent-based capabilities, one-click deployments, and much more.
 > **[See everything Pegasus includes →](https://www.saaspegasus.com/)**
-
----
 
 ## What's included
 
 This boilerplate ships with a complete, modern Django foundation:
 
-- 🐍 **Django on Python 3.14** — a clean, well-organized project structure following Django best practices.
+- 🐍 **Django 6 on Python 3.14** — a clean, well-organized project structure following Django best practices.
 - 🔐 **Authentication** — sign-up, login, password reset, and email verification via [django-allauth](https://docs.allauth.org/).
 - ⚡ **HTMX + Alpine.js** — single-page-app interactivity without the single-page-app complexity.
-- 🎨 **Tailwind CSS v4 + DaisyUI** — a modern, themeable component library, built with [Vite](https://vite.dev/) via [django-vite](https://github.com/MrBin99/django-vite).
+- 🎨 **Tailwind CSS v4 + DaisyUI** — a modern, themeable component library, integrated with [Vite](https://vite.dev/) via [django-vite](https://github.com/MrBin99/django-vite).
 - 🔌 **REST API** — built on [Django REST Framework](https://www.django-rest-framework.org/) with an auto-generated, OpenAPI-typed client.
 - 🧵 **Background tasks** — [Celery](https://docs.celeryq.dev/) workers and scheduled jobs, backed by Redis.
-- 🐘 **Postgres** — the default database, ready to go.
+- 🐘 **Postgres** — the standard Django database, ready to go.
 - 🐳 **Docker** — local services (Postgres, Redis) wired up with Docker Compose.
-- ✅ **Tooling** — Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
-- 🤖 **AI-ready** — ships with `CLAUDE.md` and built-in skills, so coding agents understand how to work with your codebase out of the box.
+- ✅ **Tooling** — Uv for Python, Vite for front end, Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
+- 🤖 **AI-ready** — ships with `CLAUDE.md` and built-in skills, so coding agents understand how to work with the codebase out of the box.
 
 ## Open-source edition vs. SaaS Pegasus
 
