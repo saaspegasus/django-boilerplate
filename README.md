@@ -1,4 +1,4 @@
-# Django SaaS Boilerplate
+# SaaS Pegasus Django Boilerplate (Open Source Edition)
 
 **The original SaaS boilerplate for Django — trusted by thousands.**
 
@@ -31,17 +31,17 @@ This boilerplate ships with a complete, modern Django foundation:
 - ✅ **Tooling** — Uv for Python, Vite for front end, Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
 - 🤖 **AI-ready** — ships with `CLAUDE.md` and built-in skills, so coding agents understand how to work with the codebase out of the box.
 
-## Open-source edition vs. SaaS Pegasus
+## Open-source edition vs. SaaS Pegasus Pro
 
-This repo is a great way to start a project or evaluate the Pegasus approach. When you're ready to
-ship a real product, [SaaS Pegasus](https://www.saaspegasus.com/) picks up where it leaves off:
+This repo is a great way to start hobby projects and evaluate Pegasus.
+The pro version picks up where it leaves off:
 
-| Feature | This repo | [SaaS Pegasus](https://www.saaspegasus.com/) |
+| Feature | This repo | [SaaS Pegasus Pro](https://www.saaspegasus.com/) |
 | --- | :---: | :---: |
 | Django + Postgres + Celery foundation | ✅ | ✅ |
 | Authentication (allauth) | ✅ | ✅ |
 | REST API (DRF) | ✅ | ✅ |
-| Tailwind + DaisyUI front end | ✅ | ✅ |
+| Tailwind + DaisyUI + vite front end | ✅ | ✅ |
 | Docker & CI | ✅ | ✅ |
 | **Stripe subscriptions & billing** | — | ✅ |
 | **Teams & multi-tenancy** | — | ✅ |
@@ -51,7 +51,6 @@ ship a real product, [SaaS Pegasus](https://www.saaspegasus.com/) picks up where
 | **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
 | **A configurable code generator** for all of the above | — | ✅ |
 | **Dedicated support & priority fixes** | Community | ✅ |
-| **Comprehensive documentation** | — | ✅ |
 
 **[Compare plans and get started with Pegasus →](https://www.saaspegasus.com/)**
 
