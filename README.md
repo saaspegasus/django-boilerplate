@@ -28,8 +28,8 @@ This boilerplate ships with a complete, modern Django foundation:
 - 🧵 **Background tasks** — [Celery](https://docs.celeryq.dev/) workers and scheduled jobs, backed by Redis.
 - 🐘 **Postgres** — the standard Django database, ready to go.
 - 🐳 **Docker** — local services (Postgres, Redis) wired up with Docker Compose.
-- ✅ **Tooling** — Uv for Python, Vite for front end, Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
-- 🤖 **AI-ready** — ships with `CLAUDE.md` and built-in skills, so coding agents understand how to work with the codebase out of the box.
+- 🛠️ **Tooling** — Uv for Python, Vite for front end, Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
+- 🤖 **Agent-ready** — ships with `CLAUDE.md`/`AGENTS.md` and built-in skills files, so coding agents understand how to work with the codebase out of the box.
 
 ## Open-source edition vs. SaaS Pegasus Pro
 
