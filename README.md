@@ -31,6 +31,14 @@ This boilerplate ships with a complete, modern Django foundation:
 - 🛠️ **Tooling** — Uv for Python, Vite for front end, Ruff formatting/linting, pre-commit hooks, a test suite, and GitHub Actions CI.
 - 🤖 **Agent-ready** — ships with `CLAUDE.md`/`AGENTS.md` and built-in skills files, so coding agents understand how to work with the codebase out of the box.
 
+## Custom codebase creator
+
+You can create a free, personalized version of this project using the [SaaS Pegasus codebase creator](https://www.saaspegasus.com/projects/)
+(requires signup). This lets you change project details, add/remove features, and change your preferred coding assistant.
+You'll also get one-click upgrades and tools for coding agents to configure your project for you.
+
+Don't need customizations? That's fine too, just fork this project and start coding!
+
 ## Open-source edition vs. SaaS Pegasus Pro
 
 This repo is a great way to start hobby/personal Django projects and evaluate SaaS Pegasus.
