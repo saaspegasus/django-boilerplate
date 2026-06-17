@@ -55,8 +55,8 @@ The pro version is more suitable for business-grade SaaS and AI applications.
 | **Teams & multi-tenancy** | — | ✅ |
 | **Built-in AI chat/agent app** | — | ✅ |
 | **One-click production deployment** (Render, Fly, Heroku, GCP, AWS…) | — | ✅ |
+| **Social & 2FA login, API keys, user impersonation** | — | ✅ |n
 | **Social & 2FA login, API keys, user impersonation** | — | ✅ |
-| **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
 | **Dedicated support & priority fixes** | Community | ✅ |
 
 **[Check out SaaS Pegasus Pro →](https://www.saaspegasus.com/)**
@@ -234,9 +234,10 @@ find . -name '*.py' | entr uv run manage.py test apps.web.tests.test_basic_views
 
 ## Documentation
 
-This project is built with [SaaS Pegasus](https://www.saaspegasus.com/), and most of the
-[Pegasus documentation](https://docs.saaspegasus.com/) applies here too — including guides on the
-[code structure](https://docs.saaspegasus.com/code-structure/), front end, APIs, and deployment.
+This project is built with [SaaS Pegasus](https://www.saaspegasus.com/), and all relevant parts of the
+[Pegasus documentation](https://docs.saaspegasus.com/) apply here too.
+
+Splitting out the open-source documentation from the pro documentation is still a work in progress.
 
 ## Support
 
@@ -245,6 +246,7 @@ requests are welcome.
 
 For dedicated support, priority bug fixes, and the full feature set, check out
 [SaaS Pegasus](https://www.saaspegasus.com/).
+There is also a community Slack instance for all Pegasus Pro customers.
 
 ## License
 
