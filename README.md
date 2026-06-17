@@ -36,7 +36,7 @@ This boilerplate ships with a complete, modern Django foundation:
 This repo is a great way to start hobby/personal Django projects and evaluate SaaS Pegasus.
 The pro version is more suitable for business-grade SaaS and AI applications.
 
-| Feature | This repo | [SaaS Pegasus Pro](https://www.saaspegasus.com/) |
+| Feature | This repo | SaaS Pegasus Pro |
 | --- | :---: | :---: |
 | Django + Postgres + Celery foundation | ✅ | ✅ |
 | Authentication (allauth) | ✅ | ✅ |
@@ -45,8 +45,8 @@ The pro version is more suitable for business-grade SaaS and AI applications.
 | Docker & CI | ✅ | ✅ |
 | **Stripe subscriptions & billing** | — | ✅ |
 | **Teams & multi-tenancy** | — | ✅ |
-| **AI chat/agent UI and starter apps** | — | ✅ |
-| **One-click deployments** (Render, Fly, Heroku, GCP, AWS…) | — | ✅ |
+| **Built-in AI chat/agent app** | — | ✅ |
+| **One-click production deployment** (Render, Fly, Heroku, GCP, AWS…) | — | ✅ |
 | **Social & 2FA login, API keys, user impersonation** | — | ✅ |
 | **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
 | **Dedicated support & priority fixes** | Community | ✅ |
