@@ -33,8 +33,8 @@ This boilerplate ships with a complete, modern Django foundation:
 
 ## Open-source edition vs. SaaS Pegasus Pro
 
-This repo is a great way to start hobby projects and evaluate Pegasus.
-The pro version picks up where it leaves off:
+This repo is a great way to start hobby/personal Django projects and evaluate SaaS Pegasus.
+The pro version is more suitable for business-grade SaaS and AI applications.
 
 | Feature | This repo | [SaaS Pegasus Pro](https://www.saaspegasus.com/) |
 | --- | :---: | :---: |
@@ -51,7 +51,7 @@ The pro version picks up where it leaves off:
 | **Wagtail CMS, dark mode, i18n, example apps** | — | ✅ |
 | **Dedicated support & priority fixes** | Community | ✅ |
 
-**[Compare plans and get started with Pegasus →](https://www.saaspegasus.com/)**
+**[Check out SaaS Pegasus Pro →](https://www.saaspegasus.com/)**
 
 ---
 
