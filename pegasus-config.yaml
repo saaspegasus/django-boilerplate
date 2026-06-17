@@ -6,7 +6,7 @@ cli:
   template_directory: templates
   use_teams: false
 default_context:
-  _pegasus_version: 2026.6.0.5
+  _pegasus_version: 2026.6.1.2
   api_framework: drf
   author_name: Cory Zue
   bundler: vite
@@ -14,7 +14,7 @@ default_context:
   css_framework: tailwind
   database: postgres
   deploy_platform: none
-  description: The original SaaS Boilerplate for Django, trusted by thousands
+  description: The original SaaS Boilerplate for Django, trusted by thousands.
   docker_mode: services
   docker_setup: default
   domain_name: localhost:8000

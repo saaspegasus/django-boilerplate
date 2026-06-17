@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * Django Boilerplate
- * The original SaaS Boilerplate for Django, trusted by thousands
+ * The original SaaS Boilerplate for Django, trusted by thousands.
  *
  * The version of the OpenAPI document: 0.1.0
  * 

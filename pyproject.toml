@@ -58,7 +58,7 @@ py-modules = []
 [project]
 name = "project"
 version = "0.1.0"
-description = "The original SaaS Boilerplate for Django, trusted by thousands"
+description = "The original SaaS Boilerplate for Django, trusted by thousands."
 readme = "README.md"
 requires-python = ">=3.14"
 dependencies = [

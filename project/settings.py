@@ -311,7 +311,7 @@ REST_FRAMEWORK = {
 
 SPECTACULAR_SETTINGS = {
     "TITLE": "Django Boilerplate",
-    "DESCRIPTION": "The original SaaS Boilerplate for Django, trusted by thousands",  # noqa: E501
+    "DESCRIPTION": "The original SaaS Boilerplate for Django, trusted by thousands.",  # noqa: E501
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEMA": False,
     "SWAGGER_UI_SETTINGS": {
@@ -357,7 +357,7 @@ SCHEDULED_TASKS: dict[str, Any] = {
 PROJECT_METADATA = {
     "NAME": gettext_lazy("Django Boilerplate"),
     "URL": "http://localhost:8000",
-    "DESCRIPTION": gettext_lazy("The original SaaS Boilerplate for Django, trusted by thousands"),  # noqa: E501
+    "DESCRIPTION": gettext_lazy("The original SaaS Boilerplate for Django, trusted by thousands."),  # noqa: E501
     "IMAGE": "https://upload.wikimedia.org/wikipedia/commons/2/20/PEO-pegasus_black.svg",
     "KEYWORDS": "SaaS, django",
     "CONTACT_EMAIL": "hello@saaspegasus.com",
