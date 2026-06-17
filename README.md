@@ -14,7 +14,7 @@ conventions, and tooling used by SaaS Pegasus projects.
 > **Looking for more?**
 > The pro version of SaaS Pegasus adds Stripe subscriptions, teams &
 > multi-tenancy, a host of AI and agent-based capabilities, one-click deployments, and much more.
-> **[See everything Pegasus includes →](https://www.saaspegasus.com/)**
+> **[See everything in SaaS Pegasus Pro →](https://www.saaspegasus.com/)**
 
 ## What's included
 
