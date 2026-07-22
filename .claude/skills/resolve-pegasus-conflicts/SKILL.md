@@ -24,10 +24,15 @@ First, determine what the user needs help with by checking their current state:
 The user has already run `git merge <main branch>` and has conflicts to resolve. Help them resolve the conflicts using these strategies:
 
 #### Database Migrations
-- **Strategy**: Discard Pegasus migration changes, keep the user's changes
-- **Reason**: Migration files should be regenerated, not merged
-- **Action**: For conflicted migration files, accept theirs (the user's version from main), then run `./manage.py makemigrations` after all conflicts are resolved
-- **Git command**: `git checkout --theirs <migration-file>` for each conflicted migration
+
+**Principle**: When main/local and Pegasus disagree about a migration, main/local wins. Main's migration files typically reflect what the local DB (and prod) have already applied, so that history is the baseline you protect. When a Pegasus migration *conflicts with or duplicates* something main has already applied, you should drop Pegasus's version in favour of main's, then run `./manage.py makemigrations` to re-express any genuine change as a clean forward diff (the change lives in the merged models, so makemigrations re-derives it).
+
+- **On a conflict**: For conflicted migration files, accept the user's version from main with `git checkout --theirs <migration-file>`, then run `./manage.py makemigrations` after all conflicts are resolved.
+- **Watch for silent (conflict-free) migration changes — this is easy to miss**: Pegasus regenerates its own auto-generated migrations and sometimes **renames** them (e.g. `0002_customuser_language...` → `0002_customuser_customer...`). A rename is a delete-on-one-side + add-on-the-other, which git merges with **no conflict markers** — so it slips through silently and leaves you with a duplicate/competing migration the conflict step never flagged. After merging, always diff the migration dirs against main to catch this:
+  ```
+  git diff --name-status main HEAD -- '*/migrations/*.py'
+  ```
+  Treat any `R` (rename) the same as a conflict: restore main's file (`git checkout main -- <file>`), delete Pegasus's regenerated copy (`git rm <file>`), then `./manage.py makemigrations` to regenerate the forward diff cleanly. Brand-new app migrations (all `A`, e.g. a freshly added `ecommerce` app) are fine — keep those as-is.
 - **djstripe migration references**: If djstripe was upgraded, check if app migrations reference old djstripe migrations that no longer exist (see the "djstripe 2.10 upgrade" section below).
 
 #### Dependency Lock Files (uv.lock, requirements.txt, package-lock.json)
@@ -75,11 +80,27 @@ After all conflicts are resolved and the merge is complete, run the verification
 
 1. **Frontend install + build**: `npm install && npm run build`
 2. **Python dependency sync**: `uv sync`
-3. **Migrations**: `./manage.py makemigrations` then `./manage.py migrate`
+3. **Migrations**: `./manage.py makemigrations` then `./manage.py migrate`. If `migrate` fails partway, see "Recovering from a partial migration" below.
 4. **Tests**: `./manage.py test`
 5. **Ruff format + lint**: `make ruff` (auto-formats and auto-fixes lint issues)
 
 Commit any pending changes produced by the steps above (e.g. new migrations, formatting fixes) with a clear message. Docker users can substitute `make upgrade` for the build/migrate steps.
+
+### Recovering from a partial migration
+
+`migrate` commits each migration separately, so a failure partway through can leave earlier migrations applied while a later one fails — the DB is now in a half-migrated state that no longer matches its starting baseline. The local dev DB is typically kept at the same migration state as production, so it matters that you put it back. For Pegasus's schema-only, reversible migrations this is straightforward to undo.
+
+1. **See what actually applied — check, don't theorize.** Surprising schema (tables/columns you didn't expect) is far more likely to be something *you just applied* than pre-existing cruft. Confirm with timestamps:
+   ```
+   ./manage.py dbshell -- -c "SELECT app, name, applied FROM django_migrations ORDER BY applied DESC LIMIT 20;"
+   ```
+   The recent timestamps are what this run applied.
+2. **Reverse them** back to the last good state, in reverse-dependency order (unapply the app that *depends on* another before the one it depends on):
+   ```
+   ./manage.py migrate <app> <last_good_migration>   # or `zero` to unapply an app entirely
+   ```
+3. **If the reverse errors loudly** (e.g. `IrreversibleError` — a data migration with no reverse defined), stop and raise to a human rather than forcing it. Don't pre-gate on `atomic = False` or side effects; just attempt the reverse and let it fail loudly if it can't. (If a forward op already dropped data, that loss happened on apply — reversing won't recover it, and that's also a human escalation.)
+4. Once back at a clean baseline, fix the offending migration (see "Database Migrations" above — usually a Pegasus rename/duplicate), then re-run `./manage.py migrate` and confirm the full chain applies cleanly from the baseline.
 
 ### Pushing
 
