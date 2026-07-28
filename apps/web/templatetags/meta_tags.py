@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import template
 from django.conf import settings
 from django.templatetags.static import static
@@ -8,7 +10,7 @@ register = template.Library()
 
 
 @register.filter
-def get_title(project_meta, page_title=None):
+def get_title(project_meta: dict[str, Any], page_title: str | None = None) -> str:
     if page_title:
         return "{} | {}".format(page_title, project_meta["NAME"])
     else:
@@ -16,14 +18,16 @@ def get_title(project_meta, page_title=None):
 
 
 @register.filter
-def get_description(project_meta, page_description=None):
+def get_description(project_meta: dict[str, Any], page_description: str | None = None) -> str:
     return page_description or project_meta["DESCRIPTION"]
 
 
 @register.filter
-def get_image_url(project_meta, page_image=None):
+def get_image_url(project_meta: dict[str, Any], page_image: str | None = None) -> str:
     image = page_image or project_meta["IMAGE"]
-    if not image or image.startswith(("http://", "https://")):
+    if not image:
+        return ""
+    if image.startswith(("http://", "https://")):
         return image
     # local media urls become absolute; anything else is treated as a static path
     if image.startswith(settings.MEDIA_URL):
@@ -32,5 +36,5 @@ def get_image_url(project_meta, page_image=None):
 
 
 @register.simple_tag
-def absolute_url(path):
+def absolute_url(path: str) -> str:
     return meta.absolute_url(path)

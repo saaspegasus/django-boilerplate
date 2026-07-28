@@ -20,10 +20,10 @@ class TurnstileSignupForm(SignupForm):
 
     turnstile_token = forms.CharField(widget=forms.HiddenInput(), required=False)
 
-    def clean_turnstile_token(self):
+    def clean_turnstile_token(self) -> str | None:
         if not settings.TURNSTILE_SECRET:
             logging.info("No turnstile secret found, not checking captcha")
-            return
+            return None
 
         turnstile_token = self.cleaned_data.get("turnstile_token", None)
         if not turnstile_token:

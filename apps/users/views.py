@@ -12,7 +12,7 @@ from .models import CustomUser
 
 
 @login_required
-def profile(request):
+def profile(request) -> HttpResponse:
     if request.method == "POST":
         form = CustomUserChangeForm(request.POST, instance=request.user)
         if form.is_valid():
@@ -57,7 +57,7 @@ def profile(request):
 
 @login_required
 @require_POST
-def upload_profile_image(request):
+def upload_profile_image(request) -> HttpResponse:
     user = request.user
     form = UploadAvatarForm(request.POST, request.FILES)
     if form.is_valid():

@@ -138,6 +138,18 @@ make uv run 'pegasus startapp <app_name> <Model1> <Model2Name>'  # Start a new D
 - Try to use type hints in new code. However, strict type-checking is not enforced and you can leave them out if it's burdensome.
   There is no need to add type hints to existing code if it does not already use them.
 
+### Type annotation conventions
+
+Type checking runs with mypy + django-stubs (`make type-check`). Conventions:
+
+- **Routed views leave `request` unannotated** (all of them, even views that don't touch `request.user`).
+  mypy can't see the guarantees made by `@login_required` and similar decorators, so annotating
+  `request: HttpRequest` makes accesses like `request.user.<related>` fail type checking.
+  Everything that isn't a routed view — middleware, context processors, signal handlers, forms,
+  internal helpers — should annotate `request: HttpRequest` normally.
+- **In DRF views where a permission class guarantees authentication**, get the typed user via
+  `apps.users.helpers.get_authenticated_user(request)` rather than casting `request.user` inline.
+
 ### Python 3.14 syntax notes
 
 - **Unparenthesized `except` with multiple exception types is valid** (PEP 758, Python 3.14+).
