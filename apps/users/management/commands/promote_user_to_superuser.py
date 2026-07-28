@@ -1,4 +1,6 @@
-from django.core.management.base import BaseCommand, CommandError
+from typing import Any
+
+from django.core.management.base import BaseCommand, CommandError, CommandParser
 
 from apps.users.models import CustomUser
 
@@ -6,10 +8,10 @@ from apps.users.models import CustomUser
 class Command(BaseCommand):
     help = "Promotes the given user to a superuser and provides admin access."
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument("username", type=str)
 
-    def handle(self, username, **options):
+    def handle(self, username: str, **options: Any) -> None:
         try:
             user = CustomUser.objects.get(username=username)
         except CustomUser.DoesNotExist:

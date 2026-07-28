@@ -9,7 +9,7 @@ from django.db import models
 from apps.users.helpers import validate_profile_picture
 
 
-def _get_avatar_filename(instance, filename):
+def _get_avatar_filename(instance: CustomUser, filename: str) -> str:
     """Use random filename prevent overwriting existing files & to fix caching issues."""
     return f"profile-pictures/{uuid.uuid4()}.{filename.split('.')[-1]}"
 
@@ -21,7 +21,7 @@ class CustomUser(AbstractUser):
 
     avatar = models.FileField(upload_to=_get_avatar_filename, blank=True, validators=[validate_profile_picture])
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.get_full_name()} <{self.email or self.username}>"
 
     def get_display_name(self) -> str:
@@ -42,5 +42,5 @@ class CustomUser(AbstractUser):
         return hashlib.md5(self.email.lower().strip().encode("utf-8")).hexdigest()
 
     @cached_property
-    def has_verified_email(self):
+    def has_verified_email(self) -> bool:
         return EmailAddress.objects.filter(user=self, verified=True).exists()

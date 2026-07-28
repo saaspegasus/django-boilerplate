@@ -1,5 +1,7 @@
+from typing import Any
+
 from django.conf import settings
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandParser
 from django_celery_beat.models import PeriodicTask
 from django_celery_beat.schedulers import ModelEntry
 
@@ -7,14 +9,14 @@ from django_celery_beat.schedulers import ModelEntry
 class Command(BaseCommand):
     help = "Bootstrap Celery periodic tasks for the environment."
 
-    def add_arguments(self, parser):
+    def add_arguments(self, parser: CommandParser) -> None:
         parser.add_argument(
             "--remove-stale",
             action="store_true",
             help="Remove tasks that are not defined in this command",
         )
 
-    def handle(self, *args, **options):
+    def handle(self, *args: Any, **options: Any) -> None:
         created_task_names = []
         for task_name, task_config in settings.SCHEDULED_TASKS.items():
             schedule_spec = task_config.pop("schedule")
