@@ -1,12 +1,13 @@
+{% load i18n %}
 <div class="bg-indigo-50 dark:bg-indigo-900">
   <div class="mx-auto max-w-7xl py-12 px-6 lg:flex lg:items-center lg:justify-between lg:py-24 lg:px-8">
     <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl">
-      <span class="block">Ready to dive in?</span>
-      <span class="block text-primary">Get your first customer in minutes.</span>
+      <span class="block">{% translate "Ready to dive in?" %}</span>
+      <span class="block text-primary">{% translate "Get your first customer in minutes." %}</span>
     </h2>
     <div class="mt-8 flex lg:mt-0 lg:shrink-0">
       <div class="inline-flex rounded-md shadow-2xs">
-        <a href="{% url 'account_signup' %}" class="btn btn-primary">Get started</a>
+        <a href="{% url 'account_signup' %}" class="btn btn-primary">{% translate "Get started" %}</a>
       </div>
     </div>
   </div>

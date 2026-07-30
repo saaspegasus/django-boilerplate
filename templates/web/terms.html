@@ -1,11 +1,12 @@
 {% extends "web/base.html" %}
 {% load static %}
+{% load i18n %}
 {% block body %}
 <section class="section mt-7">
   <div class="container">
     <div class="prose max-w-none lg:prose-lg">
-      <h1>Terms Of Service</h1>
-      <p>Your site's terms go here.</p>
+      <h1>{% translate "Terms Of Service" %}</h1>
+      <p>{% translate "Your site's terms go here." %}</p>
     </div>
   </div>
 </section>

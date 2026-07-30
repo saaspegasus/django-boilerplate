@@ -1,9 +1,10 @@
+{% load i18n %}
 <section>
   <div class="py-8 px-4 mx-auto max-w-(--breakpoint-xl) sm:py-16 lg:px-6 text-black">
     <div class="mx-auto text-center max-w-(--breakpoint-md) mb-8 lg:mb-16">
-      <h2 class="text-base font-semibold leading-7 text-primary">Powerful Built-In Features</h2>
+      <h2 class="text-base font-semibold leading-7 text-primary">{% translate "Powerful Built-In Features" %}</h2>
       <h2 class="mt-2 mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-100">
-        Headlines that catch your attention
+        {% translate "Headlines that catch your attention" %}
       </h2>
     </div>
     <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
@@ -22,11 +23,11 @@
           </svg>
         </div>
         <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Headline 1</h3>
-          <p class="text-gray-500 dark:text-gray-400">Short explanation of headline 1</p>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 1" %}</h3>
+          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 1" %}</p>
           <p class="mt-6">
             <a href="#section1" class="text-sm font-semibold leading-6 text-primary">
-              Learn more<span aria-hidden="true">→</span>
+              {% translate "Learn more" %}<span aria-hidden="true">→</span>
             </a>
           </p>
         </div>
@@ -43,10 +44,10 @@
           </svg>
         </div>
         <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Headline 2</h3>
-          <p class="text-gray-500 dark:text-gray-400">Short explanation of headline 2</p>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 2" %}</h3>
+          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 2" %}</p>
           <p class="mt-6">
-            <a href="#section2" class="text-sm font-semibold leading-6 text-primary">Learn more
+            <a href="#section2" class="text-sm font-semibold leading-6 text-primary">{% translate "Learn more" %}
               <span aria-hidden="true">→</span>
             </a>
           </p>
@@ -64,8 +65,8 @@
           </svg>
         </div>
         <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Headline 3</h3>
-          <p class="text-gray-500 dark:text-gray-400">Short explanation of headline 3</p>
+          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 3" %}</h3>
+          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 3" %}</p>
         </div>
       </div>
     </div>
