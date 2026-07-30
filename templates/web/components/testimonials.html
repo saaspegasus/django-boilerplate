@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <section class="py-6 sm:py-12">
   <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto max-w-7xl">
@@ -5,14 +6,17 @@
       <figure class="max-w-(--breakpoint-md) mx-auto">
           <blockquote>
               <p class="text-xl">
-                “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work. The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
+                {% blocktranslate trimmed %}
+                  “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work.
+                  The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
+                {% endblocktranslate %}
               </p>
           </blockquote>
           <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-              <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="profile picture">
+              <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="{% translate "profile picture" %}">
               <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
                   <cite class="pe-3 font-medium text-gray-900 dark:text-gray-100">Alice Hayley</cite>
-                  <cite class="ps-3 text-gray-600 dark:text-gray-400">CEO Company X</cite>
+                  <cite class="ps-3 text-gray-600 dark:text-gray-400">{% translate "CEO Company X" %}</cite>
               </div>
           </figcaption>
       </figure>
@@ -21,14 +25,17 @@
       <figure class="max-w-(--breakpoint-md) mx-auto">
           <blockquote>
               <p class="text-xl">
-                “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work. The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
+                {% blocktranslate trimmed %}
+                  “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work.
+                  The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
+                {% endblocktranslate %}
               </p>
           </blockquote>
           <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-              <img class="h-14 w-14 rounded-full object-fit-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?&w=100&h=100&fit=crop&crop=faces" alt="profile picture">
+              <img class="h-14 w-14 rounded-full object-fit-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?&w=100&h=100&fit=crop&crop=faces" alt="{% translate "profile picture" %}">
               <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
                   <cite class="pe-3 font-medium text-gray-900 dark:text-gray-100">Bob Herberts</cite>
-                  <cite class="ps-3 text-gray-600 dark:text-gray-400">founder Company Y</cite>
+                  <cite class="ps-3 text-gray-600 dark:text-gray-400">{% translate "founder Company Y" %}</cite>
               </div>
           </figcaption>
       </figure>

@@ -3,7 +3,7 @@
 {% load i18n %}
 {% block app %}
 <section class="app-card">
-  <h1 class="text-3xl font-bold mb-2">Sign out</h1>
+  <h1 class="text-3xl font-bold mb-2">{% translate "Sign out" %}</h1>
   <p class="text-xl mb-1">{% translate 'Are you sure you want to sign out?' %}</p>
   <form method="post" action="{% url 'account_logout' %}">
     {% csrf_token %}

@@ -13,15 +13,15 @@
                 {% translate "This is your application's logged in home page." %}
             </h2>
             <p>
-                Now go make something great!
+                {% translate "Now go make something great!" %}
             </p>
         </div>
     </div>
 </section>
 <section class="app-card">
     <div class="prose max-w-none lg:prose-lg">
-        <p>To add more to this page you can make new sections like this one.</p>
-        <p>Tip: the source of this page can be found at <code>templates/web/app_home.html</code></p>
+        <p>{% translate "To add more to this page you can make new sections like this one." %}</p>
+        <p>{% blocktranslate trimmed %}Tip: the source of this page can be found at <code>templates/web/app_home.html</code>{% endblocktranslate %}</p>
     </div>
 </section>
 {% endblock %}

@@ -1,3 +1,4 @@
+{% load i18n %}
 {% load static %}
 <section>
   <div class="overflow-hidden py-12" id="section1">
@@ -5,8 +6,8 @@
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
         <div class="space-y-8">
           <div class="max-w-(--breakpoint-md) mb-8 lg:mb-8">
-            <h2 class="text-base font-semibold leading-7 text-primary">Headline 1 in detail</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">It really is amazing</p>
+            <h2 class="text-base font-semibold leading-7 text-primary">{% translate "Headline 1 in detail" %}</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">{% translate "It really is amazing" %}</p>
             <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies
             </p>
@@ -19,7 +20,7 @@
               </svg>
             </div>
             <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Something good</h3>
+              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Something good" %}</h3>
               <p class="text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies</p>
             </div>
           </div>
@@ -30,7 +31,7 @@
               </svg>
             </div>
             <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Something better</h3>
+              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Something better" %}</h3>
               <p class="text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies</p>
             </div>
           </div>
@@ -42,13 +43,13 @@
               </svg>
             </div>
             <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">Best yet!</h3>
+              <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Best yet!" %}</h3>
               <p class="text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies</p>
             </div>
           </div>
         </div>
         <div class="mt-8 lg:mt-0">
-          <img src="{% static 'images/undraw/undraw_outer_space.svg' %}" alt="Incredible" class="w-[48rem] max-w-none sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
+          <img src="{% static 'images/undraw/undraw_outer_space.svg' %}" alt="{% translate "Incredible" %}" class="w-[48rem] max-w-none sm:w-[57rem] md:-ml-4 lg:-ml-0" width="2432" height="1442">
         </div>
       </div>
     </div>

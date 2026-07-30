@@ -1,7 +1,8 @@
 {% extends 'web/components/top_nav.html' %}
+{% load i18n %}
 {% block mobile_nav %}
 <li class="menu-title">
-  <span>Site</span>
+  <span>{% translate "Site" %}</span>
 </li>
 {{ block.super }}
 {% include 'web/components/app_nav_menu_items.html' %}
