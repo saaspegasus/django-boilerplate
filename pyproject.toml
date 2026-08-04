@@ -12,11 +12,11 @@ indent-width = 4
 target-version = "py314"
 
 [tool.ruff.lint]
-fixable = [
-    "ALL",
+# Ruff's (0.16+) default rules, plus the full pycodestyle (E) set.
+extend-select = ["E"]
+ignore = [
+    "RUF012",  # mutable-class-default: fights Django idioms (Meta.fields, form widgets, etc.)
 ]
-unfixable = []
-select = ["E", "F", "I", "UP", "B", "SIM"]
 
 [tool.ruff.format]
 quote-style = "double"
@@ -83,7 +83,7 @@ dependencies = [
 dev = [
     "django-browser-reload",
     "pre-commit",
-    "ruff>=0.15.6",
+    "ruff>=0.16",
     "pegasus-cli>=0.15",
     "psycopg[binary]",
     "mypy>=1.18.2",

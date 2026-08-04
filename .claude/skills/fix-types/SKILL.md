@@ -75,9 +75,10 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from django_stubs_ext import StrOrPromise
 
+
 # Then use StrOrPromise in type hints
-def my_function(name: StrOrPromise) -> StrOrPromise:
-    ...
+def my_function(name: StrOrPromise) -> StrOrPromise: ...
+
 
 class MyData:
     title: StrOrPromise

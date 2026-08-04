@@ -12,6 +12,8 @@ from django.utils.translation import gettext_lazy as _
 from .helpers import validate_profile_picture
 from .models import CustomUser
 
+logger = logging.getLogger(__name__)
+
 
 class TurnstileSignupForm(SignupForm):
     """
@@ -22,7 +24,7 @@ class TurnstileSignupForm(SignupForm):
 
     def clean_turnstile_token(self) -> str | None:
         if not settings.TURNSTILE_SECRET:
-            logging.info("No turnstile secret found, not checking captcha")
+            logger.info("No turnstile secret found, not checking captcha")
             return None
 
         turnstile_token = self.cleaned_data.get("turnstile_token", None)

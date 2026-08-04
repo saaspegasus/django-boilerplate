@@ -20,4 +20,4 @@ def home(request) -> HttpResponse:
 
 @user_passes_test(lambda u: u.is_superuser)
 def simulate_error(request) -> HttpResponse:
-    raise Exception("This is a simulated error.")
+    raise RuntimeError("This is a simulated error.")
