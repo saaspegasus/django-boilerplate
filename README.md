@@ -101,6 +101,21 @@ Your app should now be running! You can open it at [localhost:8000](http://local
 
 If you're just getting started, [try these steps next](https://docs.saaspegasus.com/getting-started/#post-installation-steps).
 
+### Starting the app
+
+Once initial setup is done, you only need to do the following to start the app in future sessions:
+
+```bash
+make start-bg
+make dev
+```
+
+`make start-bg` starts your Postgres and Redis containers in the background, and `make dev` runs the Django server
+and front end pipeline.
+If you also need to run Celery, run `make celery` in a separate terminal.
+
+To stop the containers, run `make stop`.
+
 ## Using the Makefile
 
 You can run `make` to see other helper functions, and you can view the source

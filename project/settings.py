@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/stable/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
 from typing import Any
 
@@ -342,6 +343,11 @@ CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 
 # Add tasks to this dict and run `python manage.py bootstrap_celery_tasks` to create them
 SCHEDULED_TASKS: dict[str, Any] = {
+    "clear-expired-sessions-every-day": {
+        "task": "apps.web.tasks.clear_expired_sessions_task",
+        "schedule": timedelta(days=1),
+        "expire_seconds": 60 * 60,
+    },
     # Example of a crontab schedule
     # from celery import schedules
     # "daily-4am-task": {
