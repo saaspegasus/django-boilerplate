@@ -27,7 +27,7 @@ def render_text_input(form_field: BoundField, **attrs: Any) -> str:
     TEXT_INPUT_TEMPLATE = """<div class="w-full mt-2" {% include "django/forms/attrs.html" %}>
       <label class="block mb-1 font-bold" for="{{ form_field.id_for_label }}">{{ form_field.label }}</label>
       {{ form_field }}
-      <small class="pg-text-muted">{{ form_field.help_text|safe }}</small>
+      <small class="text-base-content/70">{{ form_field.help_text|safe }}</small>
       {{ form_field.errors }}
     </div>
     """
@@ -39,7 +39,7 @@ def render_select_input(form_field: BoundField, **attrs: Any) -> str:
     SELECT_INPUT_TEMPLATE = """<div class="w-full mt-2" {% include "django/forms/attrs.html" %}>
       <label class="block mb-1 font-bold" for="{{ form_field.id_for_label }}">{{ form_field.label }}</label>
       {{ form_field }}
-      <small class="pg-text-muted">{{ form_field.help_text|safe }}</small>
+      <small class="text-base-content/70">{{ form_field.help_text|safe }}</small>
       {{ form_field.errors }}
     </div>
     """
@@ -56,7 +56,7 @@ def render_checkbox_input(form_field: BoundField, **attrs: Any) -> str:
           {{ form_field.label }}
         </label>
       </div>
-      <small class="pg-text-muted">{{ form_field.help_text|safe }}</small>
+      <small class="text-base-content/70">{{ form_field.help_text|safe }}</small>
       {{ form_field.errors }}
     </div>
     """
