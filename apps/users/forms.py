@@ -14,6 +14,9 @@ from .models import CustomUser
 
 logger = logging.getLogger(__name__)
 
+# Cloudflare adds these to widgets for local development; tokens from them shouldn't be accepted in production
+LOCAL_TURNSTILE_HOSTNAMES = {"localhost", "127.0.0.1"}
+
 
 class TurnstileSignupForm(SignupForm):
     """
@@ -39,6 +42,9 @@ class TurnstileSignupForm(SignupForm):
         try:
             response = requests.post(turnstile_url, data=payload, timeout=10).json()
             if not response["success"]:
+                raise forms.ValidationError("Invalid captcha. Please try again.")
+            if not settings.DEBUG and response.get("hostname") in LOCAL_TURNSTILE_HOSTNAMES:
+                logger.warning("Rejected turnstile token from local hostname %s", response["hostname"])
                 raise forms.ValidationError("Invalid captcha. Please try again.")
         except requests.Timeout:
             raise forms.ValidationError("Captcha verification timed out. Please try again.") from None
