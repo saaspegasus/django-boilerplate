@@ -11,19 +11,19 @@
     "type-check-watch": "npm run type-check -- --watch"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "typescript": "^6.0.2",
-    "vite": "^8.0.2"
+    "@types/node": "^26.6.6",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.5"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^7.2.0",
-    "@tailwindcss/typography": "^0.5.19",
-    "@tailwindcss/vite": "^4.2.2",
-    "alpinejs": "^3.15.11",
-    "chart.js": "^4.5.1",
-    "daisyui": "^5.5.19",
-    "htmx.org": "^2.0.8",
-    "js-cookie": "^3.0.5",
-    "tailwindcss": "^4.2.2"
+    "@fortawesome/fontawesome-free": "^7.3.1",
+    "@tailwindcss/typography": "^0.5.20",
+    "@tailwindcss/vite": "^4.3.3",
+    "alpinejs": "^3.17.5",
+    "chart.js": "^4.6.1",
+    "daisyui": "^5.7.50",
+    "htmx.org": "^4.0.1",
+    "js-cookie": "^3.0.8",
+    "tailwindcss": "^4.3.3"
   }
 }

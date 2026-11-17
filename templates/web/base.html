@@ -50,7 +50,7 @@
     {% block page_head %}
     {% endblock %}
 </head>
-<body class="bg-base-100" hx-headers='{"X-CSRFToken": "{{ csrf_token }}"}'>
+<body class="bg-base-100" hx-headers:inherited='{"X-CSRFToken": "{{ csrf_token }}"}'>
 {% block body_wrapper %}
 {% block top_nav %}
   {% include 'web/components/top_nav.html' %}

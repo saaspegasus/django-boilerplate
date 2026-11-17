@@ -21,11 +21,11 @@ You should be able to compare the project names to what's defined `pegasus-confi
 
 Before running any `pegasus` commands, confirm auth with `pegasus auth status` (non-interactive). If it reports unauthenticated, ask the user to run `pegasus auth login` in a **separate terminal** — it's interactive and will hang if invoked from this session. See the `pegasus-projects` skill's Setup section for the full flow.
 
-### Before pushing
+### Before starting
 
 1. **Ensure main is up to date**: Run `git checkout main && git pull` before starting the upgrade. The merge will be against main, so it must have the latest changes.
 
-### Pushing
+### Triggering the upgrade
 
 Use the CLI flags to avoid interactive prompts:
 

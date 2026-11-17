@@ -8,22 +8,22 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './assets/javascript'),
+      '@': path.resolve(import.meta.dirname, './assets/javascript'),
       // this may not be needed anymore, but leaving it shouldn't hurt
-      'use-sync-external-store/shim': path.resolve(__dirname, './node_modules/use-sync-external-store/shim'),
+      'use-sync-external-store/shim': path.resolve(import.meta.dirname, './node_modules/use-sync-external-store/shim'),
     },
   },
   base: '/static/', // Should match Django's STATIC_URL
   build: {
     manifest: true, // The manifest.json file is needed for django-vite
-    outDir: path.resolve(__dirname, './static'), // Output directory for production build
+    outDir: path.resolve(import.meta.dirname, './static'), // Output directory for production build
     emptyOutDir: false, // Preserve the outDir to not clobber Django's other files.
     rolldownOptions: {
       input: {
-        'site-base-css': path.resolve(__dirname, './assets/styles/site-base.css'),
-        'site-tailwind-css': path.resolve(__dirname, './assets/styles/site-tailwind.css'),
-        'site': path.resolve(__dirname, './assets/javascript/site.js'),
-        'app': path.resolve(__dirname, './assets/javascript/app.js'),
+        'site-base-css': path.resolve(import.meta.dirname, './assets/styles/site-base.css'),
+        'site-tailwind-css': path.resolve(import.meta.dirname, './assets/styles/site-tailwind.css'),
+        'site': path.resolve(import.meta.dirname, './assets/javascript/site.js'),
+        'app': path.resolve(import.meta.dirname, './assets/javascript/app.js'),
       },
       output: {
         // Output JS bundles to js/ directory with -bundle suffix
@@ -55,7 +55,7 @@ export default defineConfig({
     // Ignore large directories to avoid exhausting system-wide inotify watchers limit
     // when running multiple Vite instances in parallel (e.g., in multiple git worktrees)
     watch: {
-      ignored: ['**/.venv/**', '**/node_modules/**', '**/.git/**', path.resolve(__dirname, './static') + '/**'],
+      ignored: ['**/.venv/**', '**/node_modules/**', '**/.git/**', path.resolve(import.meta.dirname, './static') + '/**'],
     },
   },
 });
