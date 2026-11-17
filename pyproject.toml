@@ -84,7 +84,7 @@ dev = [
     "django-browser-reload",
     "pre-commit",
     "ruff>=0.16",
-    "pegasus-cli>=0.15",
+    "pegasus-cli>=0.17",
     "psycopg[binary]",
     "mypy>=1.18.2",
     "django-stubs>=5.0.0",

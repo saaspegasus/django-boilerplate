@@ -1,6 +1,6 @@
 ---
 name: resolve-pegasus-conflicts
-description: Resolve merge conflicts when upgrading SaaS Pegasus. Use when the user has merge conflicts after running git merge during a Pegasus upgrade, or when they need help with the merge process. Also use when the user mentions 'merge pegasus".
+description: Resolve merge conflicts when upgrading SaaS Pegasus. Use when the user has merge conflicts after running git merge during a Pegasus upgrade, or when they need help with the merge process. Also use when the user mentions 'merge pegasus'.
 ---
 
 # Resolve Pegasus Conflicts
@@ -9,70 +9,58 @@ description: Resolve merge conflicts when upgrading SaaS Pegasus. Use when the u
 
 This skill helps users resolve merge conflicts when upgrading their SaaS Pegasus codebase. Most users will invoke this skill when they have merge conflicts after merging their main branch into a Pegasus upgrade branch, but you can also help run the merge process for them.
 
+This guidance assumes the standard upgrade flow: you're on the Pegasus upgrade branch, merging the user's branch (usually `main`) into it. So `HEAD`/`--ours` is Pegasus and `--theirs` is the user's code. Verify the branch state matches before resolving anything, and adjust accordingly if it doesn't. For non-trivial conflicts, compare the clean versions from each side rather than reading conflict markers.
+
+Before resolving conflicts, read the release notes for every version between the user's previous Pegasus version and the new one (`_pegasus_version` in `pegasus-config.yaml` on each side). They're at https://docs.saaspegasus.com/release-notes/, or https://docs.saaspegasus.com/release-notes-dev/ for dev builds. The page is long, so look specifically for those versions' sections. Follow any upgrade-specific guidance there. It takes precedence over the general guidance in this skill.
+
 ### When invoked
 
-First, determine what the user needs help with by checking their current state:
+Check `git status` to see where things stand. If no merge is in progress, start with the next section; otherwise go straight to resolving conflicts. Briefly tell the user your plan, then proceed.
 
-1. **Check git status**: Run `git status` to see if there's an active merge in progress
-2. **Ask the user**: If unclear, ask whether they:
-   - Already ran `git merge` and need help resolving conflicts (most common)
-   - Want you to run the merge process for them
-   - Need help understanding which conflicts to prioritize
+### If the merge hasn't been run yet
+
+Pegasus creates the upgrade branch on the remote (named `pegasus-<version>-<timestamp>`), and the user's local branches are often behind. Fetch first, make sure both the upgrade branch and the user's branch are up to date with the remote, then check out the upgrade branch and merge the user's branch into it.
 
 ### If there's an active merge with conflicts
 
 The user has already run `git merge <main branch>` and has conflicts to resolve. Help them resolve the conflicts using these strategies:
+
+#### Dependency files
+
+Merge source files (`pyproject.toml`, `requirements/*.in`, `package.json`) by hand, keeping the user's customizations. For lock files (`uv.lock`, `requirements/*.txt`, `package-lock.json`), take the Pegasus side, then re-lock and install from the merged source files right away. Later steps like `makemigrations` need a working environment.
+
+Before committing the merge, check for lost upgrades: taking Pegasus's lock drops any versions the user bumped since their last upgrade. For each package the user changed between the merge base and their branch (packages only Pegasus changed don't need checking), confirm the merged lock still has their version. If not, pick the sensible one (usually the newer, unless the user's change looks deliberate, like a pin or downgrade) and restore it. Ask if unclear.
 
 #### Database Migrations
 
 **Principle**: When main/local and Pegasus disagree about a migration, main/local wins. Main's migration files typically reflect what the local DB (and prod) have already applied, so that history is the baseline you protect. When a Pegasus migration *conflicts with or duplicates* something main has already applied, you should drop Pegasus's version in favour of main's, then run `./manage.py makemigrations` to re-express any genuine change as a clean forward diff (the change lives in the merged models, so makemigrations re-derives it).
 
 - **On a conflict**: For conflicted migration files, accept the user's version from main with `git checkout --theirs <migration-file>`, then run `./manage.py makemigrations` after all conflicts are resolved.
-- **Watch for silent (conflict-free) migration changes — this is easy to miss**: Pegasus regenerates its own auto-generated migrations and sometimes **renames** them (e.g. `0002_customuser_language...` → `0002_customuser_customer...`). A rename is a delete-on-one-side + add-on-the-other, which git merges with **no conflict markers** — so it slips through silently and leaves you with a duplicate/competing migration the conflict step never flagged. After merging, always diff the migration dirs against main to catch this:
-  ```
-  git diff --name-status main HEAD -- '*/migrations/*.py'
-  ```
-  Treat any `R` (rename) the same as a conflict: restore main's file (`git checkout main -- <file>`), delete Pegasus's regenerated copy (`git rm <file>`), then `./manage.py makemigrations` to regenerate the forward diff cleanly. Brand-new app migrations (all `A`, e.g. a freshly added `ecommerce` app) are fine — keep those as-is.
-- **djstripe migration references**: If djstripe was upgraded, check if app migrations reference old djstripe migrations that no longer exist (see the "djstripe 2.10 upgrade" section below).
+  - **Header-only conflicts**: Pegasus regenerates some migrations on every release, which rewrites the `# Generated by Django ... on <date>` header even when nothing else changed. If `git diff main HEAD -- <migration-file>` shows only the header line, take main's version and move on — there's no schema change to re-derive.
 
-#### Dependency Lock Files (uv.lock, requirements.txt, package-lock.json)
-- **Strategy**: Accept Pegasus changes to lock files, merge source files manually
-- **Source files**: `pyproject.toml`, `requirements.in`, `package.json`
-- **Lock files**: `uv.lock`, `requirements.txt`, `package-lock.json`
-- **Action**:
-  1. For source files: Merge carefully, keeping customizations
-  2. For lock files: Accept ours (Pegasus version) with `git checkout --ours <lock-file>` and `git add <lock-file>`
-  3. **Immediately regenerate**: Run `uv sync` (for uv.lock) or `npm install` (for package-lock.json) right after resolving to ensure dependencies are properly synced
-- **Important**: Don't wait until post-merge steps - regenerate lock files immediately after resolving them
+#### Other files
 
-#### Static Assets (JavaScript/CSS bundles in static/)
-- **Strategy**: Delete and regenerate
-- **Action**: Accept either version (doesn't matter), will be rebuilt
-- **Regenerate**: Run `npm run build` or `npm run dev` after merge
+- **Static assets**: built bundles in `static/` (js/css/assets), if the project commits them: take either side; they're rebuilt by `npm run build` in the post-merge steps.
+- **Configuration files** (`.env.example`, settings files): merge carefully, keeping the user's customizations.
+- **Everything else**: read both versions, understand the changes, and merge.
 
-#### Configuration Files (.env.example, settings files)
-- **Strategy**: Merge carefully, keep customizations
-- **Action**: Review both sides and combine them intelligently
+### Check for silent migration changes
 
-#### Other Files
-- **Strategy**: Evaluate case-by-case
-- **Action**: Read both versions, understand the changes, merge intelligently
+Do this whether or not the merge had conflicts — this is easy to miss. Git can merge migration changes with **no conflict markers**, leaving duplicate or competing migrations that the conflict step never flagged. Two common causes:
 
-### If running the full merge process
+- Pegasus regenerates its own auto-generated migrations and sometimes **renames** them (e.g. `0002_customuser_language...` → `0002_customuser_customer...`). A rename is a delete on one side and an add on the other, so it merges cleanly.
+- Pegasus adds a **new migration to an app you've also added migrations to** (e.g. Pegasus adds `chat/0005_chat_message_history` while main already has `chat/0005` through `chat/0009`). Both sides merge cleanly, leaving the app with competing migrations.
 
-If the user wants you to run the merge:
+Diff the migration dirs against main. Before the merge is committed, compare the staged result — not `HEAD`, which is still the bare Pegasus commit and would list every one of your own migrations as deleted:
+```
+git diff --cached --name-status main -- '*/migrations/*.py'
+```
+(If the merge is already committed, use `git diff --name-status main HEAD -- '*/migrations/*.py'` instead.) **Empty output means there's nothing to fix.** Otherwise, handle each line:
+- **`R` (rename)**: restore main's file (`git checkout main -- <old-file>`) and delete Pegasus's regenerated copy (`git rm <new-file>`).
+- **`A` in an app that doesn't exist on main** (e.g. a freshly added `ecommerce` app): fine, keep it as-is.
+- **`A` in an app that exists on main**: open it and check its `dependencies`. If it depends on main's latest migration for that app, keep it. If it depends on an earlier one (or its number collides with one of main's), it competes with main's history — `git rm` it. If it contains `RunPython` or `RunSQL` operations, port those into a new migration by hand, since `makemigrations` only re-derives schema changes.
 
-1. **Fetch latest changes**: Run `git fetch` to download the latest branches and commits from the remote (this ensures you can see the latest Pegasus upgrade branch)
-2. **Find the latest upgrade branch**: Run `git branch -a` to list all branches and look for the latest Pegasus upgrade branch (usually prefixed with `pegasus-YYYY.MM`, e.g., `pegasus-2025.01`)
-3. **Check current branch**: Run `git status` to see if they're already on the upgrade branch
-4. **Checkout the upgrade branch**: If not already on it, run `git checkout <pegasus-branch-name>`
-5. **Pull latest changes**: Run `git pull` to ensure the upgrade branch is up to date with the remote
-6. **Identify main branch**: Determine the main development branch (usually `main` or `master`)
-7. **Run merge**: Execute `git merge <main-branch>` to merge the main development branch into the Pegasus upgrade branch
-8. **Handle conflicts**: Follow the conflict resolution strategies above
-9. **Dependency sync**: Once conflicts have been resolved, you should re-sync dependencies.
-   - Python: `uv sync`
-   - JavaScript: `npm install`
+Then run `./manage.py makemigrations` to re-express any genuine schema change as a clean forward diff. If `makemigrations` reports "Conflicting migrations detected; multiple leaf nodes", a competing migration slipped through — find it with the diff above rather than running `makemigrations --merge`.
 
 ### Post-merge steps
 
@@ -80,7 +68,7 @@ After all conflicts are resolved and the merge is complete, run the verification
 
 1. **Frontend install + build**: `npm install && npm run build`
 2. **Python dependency sync**: `uv sync`
-3. **Migrations**: `./manage.py makemigrations` then `./manage.py migrate`. If `migrate` fails partway, see "Recovering from a partial migration" below.
+3. **Migrations**: `./manage.py makemigrations` then `./manage.py migrate`. If `makemigrations` alters or removes a field the user added or customized, the merge probably changed something unintentionally — check the merged model before migrating. If `migrate` fails partway, see "Recovering from a partial migration" below.
 4. **Tests**: `./manage.py test`
 5. **Ruff format + lint**: `make ruff` (auto-formats and auto-fixes lint issues)
 
@@ -122,54 +110,11 @@ Hold off on pushing (and ask first) if any of these are true:
 
 - **Enable rerere**: Suggest running `git config rerere.enabled true` to remember conflict resolutions for future upgrades
 - **Never squash**: When merging Pegasus PRs in GitHub, always use "Create a merge commit" (not squash or rebase)
-- **Review changes**: Always review what changed in the upgrade before committing
-- **Always compare clean versions**: When resolving non-trivial conflicts, use `git show HEAD:<file>` and `git show main:<file>` to see the clean versions from each branch, rather than trying to parse the conflict markers in place
-
-### Examples
-
-#### Example 1: User has conflicts (most common)
-```
-User: "I have merge conflicts after upgrading Pegasus"
-You: [Check git status, see conflicts in migrations and uv.lock]
-You: "I can see you have conflicts in migrations and uv.lock. Let me help resolve these:
-- For migrations: I'll keep your version and we'll regenerate them
-- For uv.lock: I'll accept the Pegasus version and regenerate it
-[Proceed to resolve conflicts]"
-```
-
-#### Example 2: User wants help with the merge
-```
-User: "Can you help me merge my changes into the Pegasus upgrade branch?"
-You: "I can help with that. Let me:
-1. Find the latest Pegasus upgrade branch
-2. Check out that branch (or confirm you're already on it)
-3. Merge your main development branch into it
-4. Help resolve any conflicts that come up
-[Proceed with finding branch and running git merge main]"
-```
 
 ### Edge cases
 
-- **No pegasus upgrade branch**: If the user doesn't have a `pegasus-YYYY.MM` branch, direct them to the Pegasus upgrade documentation
+- **No pegasus upgrade branch**: If the user doesn't have a `pegasus-<version>-<timestamp>` branch, direct them to the Pegasus upgrade documentation
 - **Too many conflicts**: If there are dozens of conflicts across many files, suggest reviewing them in priority order (migrations first, then lock files, then configuration)
 - **Custom modifications**: Be conservative with user customizations - when in doubt, keep their changes and note what was different in Pegasus
+- **Renamed files**: Pegasus sometimes renames files (e.g. `test_agents.py` → `test_events.py`). Git follows the rename, so a conflict with your edits to the old file shows up under the new name.
 - **Unfamiliar file types**: If you encounter conflicts in files you're not sure how to handle, explain both sides of the conflict and ask the user which approach makes sense
-
-### djstripe 2.10 upgrade (Pegasus 2026.2.2+)
-
-Pegasus 2026.2.2 upgraded djstripe from 2.9 to 2.10. This is a significant upgrade that requires extra steps beyond normal conflict resolution.
-
-#### Migration squash
-djstripe 2.10 squashed all previous migrations into `0001_initial` and `0002_2_10`. After resolving migration conflicts, check if any app migrations reference old djstripe migrations (e.g. `('djstripe', '0012_2_8')`) that no longer exist. If so, update those dependencies to `('djstripe', '0001_initial')`. Do NOT delete migrations — update their dependency references instead.
-
-#### Fields moved to stripe_data
-Many model fields were removed as DB columns and now read from the `stripe_data` JSONField via `@property` accessors. Key changes on `Product`: `default_price`, `type` are now properties. This means:
-- `select_related("default_price")` will fail — remove it, just use `.get()` directly
-- `filter()`, `order_by()`, `values()` on removed fields will fail — use `stripe_data__<field>` instead
-- Property access like `product.default_price.id` still works (it does a DB lookup from `stripe_data`)
-
-#### Re-sync stripe data after migrating
-After running `./manage.py migrate`, run `./manage.py djstripe_sync_models Product Price` to repopulate `stripe_data` for existing records. Without this, properties like `product.default_price` will return `None` because the old FK data isn't in `stripe_data` yet.
-
-#### Obsolete workarounds
-The `RunSQL` migration that altered `djstripe_paymentintent.capture_method` column length (workaround for [dj-stripe#2038](https://github.com/dj-stripe/dj-stripe/issues/2038)) is no longer needed. Clear its `operations` list (keep the migration file as a no-op for the dependency chain).

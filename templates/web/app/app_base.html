@@ -12,7 +12,7 @@
       <i class="fa fa-times"></i>
     </button>
   </div>
-  <section class="section" hx-on::response-error="document.getElementById('htmx-error').classList.remove('hidden')">
+  <section class="section" hx-on::response:error="document.getElementById('htmx-error').classList.remove('hidden')">
     <div class="container flex flex-row">
       <div class="w-64 hidden lg:flex lg:sticky lg:top-21 lg:self-start">
         {% block sidebar-nav %}

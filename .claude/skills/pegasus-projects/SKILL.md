@@ -264,8 +264,6 @@ conflicting settings:
   `subscription_pricing_ui`.
 - `use_teams=false` clears `use_teams_example`.
 - `use_async=false` clears `use_async_example`.
-- `docker_mode=full` requires `database=postgres` (rejected otherwise).
-- `deploy_platform=kamal` requires `database=postgres`.
 
 ## License × feature gating
 

@@ -6,13 +6,12 @@ cli:
   template_directory: templates
   use_teams: false
 default_context:
-  _pegasus_version: 2026.10.2
+  _pegasus_version: '2026.11'
   api_framework: drf
   author_name: Cory Zue
   bundler: vite
   ci: github_actions
   css_framework: tailwind
-  database: postgres
   deploy_platform: none
   description: The original SaaS Boilerplate for Django, trusted by thousands.
   docker_mode: services

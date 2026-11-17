@@ -59,5 +59,4 @@ Summarize what was done:
 
 If there were failures, present the issues and ask how the user wants to proceed.
 
-If everything passed, ask the user if they'd like to commit the changes. If yes, commit
-using the `/commit` skill.
+If everything passed, ask the user if they'd like to commit the changes, and commit them if so.

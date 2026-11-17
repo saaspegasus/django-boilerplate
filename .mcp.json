@@ -4,7 +4,7 @@
       "command": "uvx",
       "args": [
         "--from",
-        "mcp-alchemy==2025.8.15.91819",
+        "mcp-alchemy==2026.10.15.202659",
         "--with",
         "psycopg2-binary",
         "--refresh-package",
