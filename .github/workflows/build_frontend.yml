@@ -18,7 +18,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           check-latest: true
       - name: Install dependencies
-        run: npm install
+        run: npm ci
       - name: Build Django front end
         run: npm run build
       - name: Check types

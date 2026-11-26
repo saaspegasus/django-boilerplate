@@ -1,0 +1,39 @@
+{% load i18n %}
+<section class="bg-base-200">
+  <div class="mx-auto grid max-w-7xl gap-10 px-6 py-16 sm:py-24 lg:grid-cols-3 lg:gap-16 lg:px-8">
+    <div>
+      <h2 class="text-3xl font-bold tracking-tight text-balance text-base-content sm:text-4xl">
+        {% translate "Frequently asked questions" %}
+      </h2>
+      <p class="mt-4 text-base-content/70">
+        {% translate "Can't find what you're looking for? Drop us a line. We're happy to help." %}
+      </p>
+    </div>
+    <div class="border-t border-base-content/10 lg:col-span-2">
+      <details class="collapse collapse-arrow rounded-none border-b border-base-content/10" name="landing-faq" open>
+        <summary class="collapse-title ps-0 font-semibold">{% translate "How do I get started?" %}</summary>
+        <div class="collapse-content px-0 text-base-content/70">
+          {% translate "Create an account and you'll be up and running in a few minutes. Really, that's it." %}
+        </div>
+      </details>
+      <details class="collapse collapse-arrow rounded-none border-b border-base-content/10" name="landing-faq">
+        <summary class="collapse-title ps-0 font-semibold">{% translate "Can I use it on my phone?" %}</summary>
+        <div class="collapse-content px-0 text-base-content/70">
+          {% translate "Yep! It works great on phones, tablets, and laptops." %}
+        </div>
+      </details>
+      <details class="collapse collapse-arrow rounded-none border-b border-base-content/10" name="landing-faq">
+        <summary class="collapse-title ps-0 font-semibold">{% translate "Is it hard to learn?" %}</summary>
+        <div class="collapse-content px-0 text-base-content/70">
+          {% translate "Not at all. Most people find their way around in their first session." %}
+        </div>
+      </details>
+      <details class="collapse collapse-arrow rounded-none border-b border-base-content/10" name="landing-faq">
+        <summary class="collapse-title ps-0 font-semibold">{% translate "What if I need help?" %}</summary>
+        <div class="collapse-content px-0 text-base-content/70">
+          {% translate "Get in touch and we'll get back to you as soon as we can!" %}
+        </div>
+      </details>
+    </div>
+  </div>
+</section>

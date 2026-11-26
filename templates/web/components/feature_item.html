@@ -1,0 +1,14 @@
+{% comment %}
+  A single feature: icon, title and short description.
+  Usage: {% include "web/components/feature_item.html" with icon="fa-solid fa-bolt" title=_("Title") description=_("Text") %}
+  The icon is any Font Awesome class: https://fontawesome.com/search?ic=free
+{% endcomment %}
+<div class="flex gap-4">
+  <div class="flex size-10 shrink-0 items-center justify-center rounded-field bg-primary/10 text-primary" aria-hidden="true">
+    <i class="{{ icon }}"></i>
+  </div>
+  <div>
+    <h3 class="font-semibold text-base-content">{{ title }}</h3>
+    <p class="mt-1 text-base-content/70">{{ description }}</p>
+  </div>
+</div>

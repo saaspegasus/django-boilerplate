@@ -1,44 +1,45 @@
 {% load i18n %}
-{% load static %}
-<section class="py-6 sm:py-12">
-  <div class="grid grid-cols-1 lg:grid-cols-2 mx-auto max-w-7xl">
-    <div class="px-8">
-      <figure class="max-w-(--breakpoint-md) mx-auto">
-          <blockquote>
-              <p class="text-xl">
-                {% blocktranslate trimmed %}
-                  “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work.
-                  The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
-                {% endblocktranslate %}
-              </p>
-          </blockquote>
-          <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-              <img class="h-14 w-14 rounded-full" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=faces" alt="{% translate "profile picture" %}">
-              <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
-                  <cite class="pe-3 font-medium text-gray-900 dark:text-gray-100">Alice Hayley</cite>
-                  <cite class="ps-3 text-gray-600 dark:text-gray-400">{% translate "CEO Company X" %}</cite>
-              </div>
-          </figcaption>
-      </figure>
-    </div>
-    <div class="px-8 pt-16 lg:pt-0">
-      <figure class="max-w-(--breakpoint-md) mx-auto">
-          <blockquote>
-              <p class="text-xl">
-                {% blocktranslate trimmed %}
-                  “As a project manager, I've been using 'SaaS Product X' for over a year now and it has completely transformed the way we work.
-                  The intuitive interface and powerful features have streamlined our processes, saving us countless hours.”
-                {% endblocktranslate %}
-              </p>
-          </blockquote>
-          <figcaption class="flex items-center justify-center mt-6 space-x-3 rtl:space-x-reverse">
-              <img class="h-14 w-14 rounded-full object-fit-cover" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?&w=100&h=100&fit=crop&crop=faces" alt="{% translate "profile picture" %}">
-              <div class="flex items-center divide-x-2 rtl:divide-x-reverse divide-gray-500 dark:divide-gray-700">
-                  <cite class="pe-3 font-medium text-gray-900 dark:text-gray-100">Bob Herberts</cite>
-                  <cite class="ps-3 text-gray-600 dark:text-gray-400">{% translate "founder Company Y" %}</cite>
-              </div>
-          </figcaption>
-      </figure>
-    </div>
+<section class="bg-base-200">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:gap-16 lg:px-8">
+    <figure>
+      <blockquote class="text-xl leading-relaxed text-pretty text-base-content sm:text-2xl">
+        <p>
+          {% blocktranslate trimmed %}
+            “We moved our whole team over in an afternoon. A month later, our weekly status meeting is fifteen minutes instead of an hour.”
+          {% endblocktranslate %}
+        </p>
+      </blockquote>
+      <figcaption class="mt-8 flex items-center gap-4">
+        <div class="avatar avatar-placeholder">
+          <div class="w-12 rounded-full bg-primary text-primary-content">
+            <span>AH</span>
+          </div>
+        </div>
+        <div>
+          <div class="font-semibold text-base-content">Alice Hayley</div>
+          <div class="text-sm text-base-content/70">{% translate "Operations lead, Company X" %}</div>
+        </div>
+      </figcaption>
+    </figure>
+    <figure>
+      <blockquote class="text-xl leading-relaxed text-pretty text-base-content sm:text-2xl">
+        <p>
+          {% blocktranslate trimmed %}
+            “It does the handful of things we need really well, and stays out of the way the rest of the time.”
+          {% endblocktranslate %}
+        </p>
+      </blockquote>
+      <figcaption class="mt-8 flex items-center gap-4">
+        <div class="avatar avatar-placeholder">
+          <div class="w-12 rounded-full bg-secondary text-secondary-content">
+            <span>BH</span>
+          </div>
+        </div>
+        <div>
+          <div class="font-semibold text-base-content">Bob Herberts</div>
+          <div class="text-sm text-base-content/70">{% translate "Founder, Company Y" %}</div>
+        </div>
+      </figcaption>
+    </figure>
   </div>
 </section>

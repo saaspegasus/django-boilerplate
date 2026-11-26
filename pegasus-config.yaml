@@ -6,7 +6,7 @@ cli:
   template_directory: templates
   use_teams: false
 default_context:
-  _pegasus_version: '2026.11'
+  _pegasus_version: 2026.11.1
   api_framework: drf
   author_name: Cory Zue
   bundler: vite
@@ -54,6 +54,7 @@ default_context:
   use_flowbite: n
   use_health_checks: n
   use_impersonation: n
+  use_mcp_server: n
   use_pegasus_css_classes: n
   use_sentry: n
   use_shadcn: n

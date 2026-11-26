@@ -1,55 +1,78 @@
 {% load i18n %}
-{% load static %}
-<section>
-  <div class="overflow-hidden py-12" id="section2">
-    <div class="py-8 px-4 mx-auto max-w-(--breakpoint-xl) sm:py-16 lg:px-6 text-black">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-8">
-        <div class="mb-8 lg:mb-0 relative">
-          <img src="{% static 'images/undraw/undraw_outer_space.svg' %}" alt="{% translate "Amazing" %}" class="lg:absolute top-0 right-0 w-[48rem] max-w-none sm:w-[57rem]" width="2432" height="1442">
+<section id="section2">
+  <div class="mx-auto grid max-w-7xl gap-12 px-6 py-16 sm:py-24 lg:grid-cols-2 lg:items-center lg:gap-16 lg:px-8">
+    <div>
+      <h2 class="text-3xl font-bold tracking-tight text-balance text-base-content sm:text-4xl">
+        {% translate "Grows with you" %}
+      </h2>
+      <p class="mt-4 max-w-xl text-lg text-pretty text-base-content/70">
+        {% translate "Start small and add more when you need it. No big setup required." %}
+      </p>
+      <div class="mt-10 space-y-8">
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-seedling" title=_("Start simple") description=_("Up and running in a few minutes, no manual required.") %}
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-sliders" title=_("Add more when you're ready") description=_("Turn things on as you need them, and not a moment before.") %}
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-mobile-screen" title=_("Use it anywhere") description=_("Works on your phone, tablet, or laptop.") %}
+      </div>
+    </div>
+    {% comment %}A theme-colored sketch of a settings page with features switched on and off. Swap in a screenshot of your own product.{% endcomment %}
+    <div class="lg:order-first" aria-hidden="true">
+      <div class="mx-auto max-w-md rounded-box border border-base-content/10 bg-base-100 shadow-lg">
+        <div class="flex items-center justify-between p-6">
+          <div class="h-3 w-24 rounded-full bg-base-content/40"></div>
+          <span class="badge badge-soft badge-primary">2 / 5</span>
         </div>
-        <div class="ml-8 space-y-8">
-          <div class="max-w-(--breakpoint-md) mb-8 lg:mb-8">
-            <h2 class="text-base font-semibold leading-7 text-primary">{% translate "Headline 2 in detail" %}</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-4xl">{% translate "This app is so great" %}</p>
-            <p class="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300">
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies
-            </p>
-          </div>
-          <div class="grid grid-cols-6">
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-              <svg class="h-5 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M9.493 2.853a.75.75 0 00-1.486-.205L7.545 6H4.198a.75.75 0 000 1.5h3.14l-.69 5H3.302a.75.75 0 000 1.5h3.14l-.435 3.148a.75.75 0 001.486.205L7.955 14h2.986l-.434 3.148a.75.75 0 001.486.205L12.456 14h3.346a.75.75 0 000-1.5h-3.14l.69-5h3.346a.75.75 0 000-1.5h-3.14l.435-3.147a.75.75 0 00-1.486-.205L12.045 6H9.059l.434-3.147zM8.852 7.5l-.69 5h2.986l.69-5H8.852z" clip-rule="evenodd" />
-              </svg>
+        <ul class="divide-y divide-base-content/10 border-t border-base-content/10">
+          <li class="flex items-center gap-4 px-6 py-4">
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-field bg-primary/10 text-primary">
+              <i class="fa-solid fa-bolt text-sm"></i>
             </div>
-            <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold dark:text-gray-100">{% translate "A feature" %}</h3>
-              <p class="text-gray-500 dark:text-gray-400">And lorem ipsum</p>
+            <div class="flex-1 space-y-2">
+              <div class="h-2.5 w-24 rounded-full bg-base-content/40"></div>
+              <div class="h-2 w-32 rounded-full bg-base-content/10"></div>
             </div>
-          </div>
-          <div class="grid grid-cols-6">
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-              <svg class="h-5 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M4.5 2A1.5 1.5 0 003 3.5v13A1.5 1.5 0 004.5 18h11a1.5 1.5 0 001.5-1.5V7.621a1.5 1.5 0 00-.44-1.06l-4.12-4.122A1.5 1.5 0 0011.378 2H4.5zm2.25 8.5a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5zm0 3a.75.75 0 000 1.5h6.5a.75.75 0 000-1.5h-6.5z" clip-rule="evenodd" />
-              </svg>
+            <input type="checkbox" class="toggle toggle-primary pointer-events-none" tabindex="-1" checked>
+          </li>
+          <li class="flex items-center gap-4 px-6 py-4">
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-field bg-primary/10 text-primary">
+              <i class="fa-solid fa-chart-line text-sm"></i>
             </div>
-            <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold dark:text-gray-100">{% translate "Another one" %}</h3>
-              <p class="text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies</p>
+            <div class="flex-1 space-y-2">
+              <div class="h-2.5 w-20 rounded-full bg-base-content/40"></div>
+              <div class="h-2 w-32 rounded-full bg-base-content/10"></div>
             </div>
-          </div>
-          <div class="grid grid-cols-6">
-            <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-              <svg class="h-5 w-5 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path d="M9.25 13.25a.75.75 0 001.5 0V4.636l2.955 3.129a.75.75 0 001.09-1.03l-4.25-4.5a.75.75 0 00-1.09 0l-4.25 4.5a.75.75 0 101.09 1.03L9.25 4.636v8.614z" />
-                <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
-              </svg>
+            <input type="checkbox" class="toggle toggle-primary pointer-events-none" tabindex="-1" checked>
+          </li>
+          <li class="flex items-center gap-4 px-6 py-4">
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-field bg-base-content/5 text-base-content/40">
+              <i class="fa-solid fa-bell text-sm"></i>
             </div>
-            <div class="col-span-5">
-              <h3 class="mb-2 text-xl font-bold dark:text-gray-100">{% translate "And a third" %}</h3>
-              <p class="text-gray-500 dark:text-gray-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet purus in odio ultricies</p>
+            <div class="flex-1 space-y-2">
+              <div class="h-2.5 w-28 rounded-full bg-base-content/20"></div>
+              <div class="h-2 w-32 rounded-full bg-base-content/10"></div>
             </div>
-          </div>
-        </div>
+            <input type="checkbox" class="toggle pointer-events-none" tabindex="-1">
+          </li>
+          <li class="flex items-center gap-4 px-6 py-4">
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-field bg-base-content/5 text-base-content/40">
+              <i class="fa-solid fa-plug text-sm"></i>
+            </div>
+            <div class="flex-1 space-y-2">
+              <div class="h-2.5 w-16 rounded-full bg-base-content/20"></div>
+              <div class="h-2 w-32 rounded-full bg-base-content/10"></div>
+            </div>
+            <input type="checkbox" class="toggle pointer-events-none" tabindex="-1">
+          </li>
+          <li class="flex items-center gap-4 px-6 py-4">
+            <div class="flex size-9 shrink-0 items-center justify-center rounded-field bg-base-content/5 text-base-content/40">
+              <i class="fa-solid fa-palette text-sm"></i>
+            </div>
+            <div class="flex-1 space-y-2">
+              <div class="h-2.5 w-24 rounded-full bg-base-content/20"></div>
+              <div class="h-2 w-32 rounded-full bg-base-content/10"></div>
+            </div>
+            <input type="checkbox" class="toggle pointer-events-none" tabindex="-1">
+          </li>
+        </ul>
       </div>
     </div>
   </div>

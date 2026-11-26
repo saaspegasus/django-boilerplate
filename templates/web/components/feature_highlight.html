@@ -1,73 +1,18 @@
 {% load i18n %}
-<section>
-  <div class="py-8 px-4 mx-auto max-w-(--breakpoint-xl) sm:py-16 lg:px-6 text-black">
-    <div class="mx-auto text-center max-w-(--breakpoint-md) mb-8 lg:mb-16">
-      <h2 class="text-base font-semibold leading-7 text-primary">{% translate "Powerful Built-In Features" %}</h2>
-      <h2 class="mt-2 mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-gray-100">
-        {% translate "Headlines that catch your attention" %}
-      </h2>
-    </div>
-    <div class="space-y-8 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-12 md:space-y-0">
-      <div class="grid grid-cols-6 lg:grid-cols-1">
-        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-          <svg class="h-5 w-5 lg:w-6 lg:h-6 flex-none text-primary" xmlns="http://www.w3.org/2000/svg"
-               viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-               stroke-linejoin="round">
-            <path
-              d="M7 7h10a2 2 0 0 1 2 2v1l1 1v3l-1 1v3a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-3l-1 -1v-3l1 -1v-1a2 2 0 0 1 2 -2z"></path>
-            <path d="M10 16h4"></path>
-            <circle cx="8.5" cy="11.5" r=".5" fill="currentColor"></circle>
-            <circle cx="15.5" cy="11.5" r=".5" fill="currentColor"></circle>
-            <path d="M9 7l-1 -4"></path>
-            <path d="M15 7l1 -4"></path>
-          </svg>
-        </div>
-        <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 1" %}</h3>
-          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 1" %}</p>
-          <p class="mt-6">
-            <a href="#section1" class="text-sm font-semibold leading-6 text-primary">
-              {% translate "Learn more" %}<span aria-hidden="true">→</span>
-            </a>
-          </p>
-        </div>
+<section class="bg-base-200">
+  <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <h2 class="max-w-2xl text-3xl font-bold tracking-tight text-balance text-base-content sm:text-4xl">
+      {% translate "Everything you need, without the setup" %}
+    </h2>
+    <div class="mt-12 grid gap-10 md:grid-cols-3">
+      <div class="border-t border-base-content/10 pt-6">
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-bolt" title=_("Start in minutes") description=_("Sign up and get your first project going before your coffee cools.") %}
       </div>
-      <div class="grid grid-cols-6 lg:grid-cols-1">
-        <div class="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-          <svg class="h-5 w-5 lg:w-6 lg:h-6 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
-               aria-hidden="true">
-            <path fill-rule="evenodd"
-                  d="M1.045 6.954a2.75 2.75 0 01.217-.678L2.53 3.58A2.75 2.75 0 015.019 2h9.962a2.75 2.75 0 012.488 1.58l1.27 2.696c.101.216.174.444.216.678A1 1 0 0119 7.25v1.5a2.75 2.75 0 01-2.75 2.75H3.75A2.75 2.75 0 011 8.75v-1.5a1 1 0 01.045-.296zm2.843-2.736A1.25 1.25 0 015.02 3.5h9.962c.484 0 .925.28 1.13.718l.957 2.032H14a1 1 0 00-.86.49l-.606 1.02a1 1 0 01-.86.49H8.236a1 1 0 01-.894-.553l-.448-.894A1 1 0 006 6.25H2.932l.956-2.032z"
-                  clip-rule="evenodd"/>
-            <path
-              d="M1 14a1 1 0 011-1h4a1 1 0 01.894.553l.448.894a1 1 0 00.894.553h3.438a1 1 0 00.86-.49l.606-1.02A1 1 0 0114 13h4a1 1 0 011 1v2a2 2 0 01-2 2H3a2 2 0 01-2-2v-2z"/>
-          </svg>
-        </div>
-        <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 2" %}</h3>
-          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 2" %}</p>
-          <p class="mt-6">
-            <a href="#section2" class="text-sm font-semibold leading-6 text-primary">{% translate "Learn more" %}
-              <span aria-hidden="true">→</span>
-            </a>
-          </p>
-        </div>
-
+      <div class="border-t border-base-content/10 pt-6">
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-layer-group" title=_("Everything in one place") description=_("No more digging through five different tools to find that one thing.") %}
       </div>
-      <div class="grid grid-cols-6 lg:grid-cols-1">
-        <div class="flex justify-center items-center w-10 h-10 rounded-full bg-primary/20 lg:h-12 lg:w-12">
-          <svg class="h-5 w-5 lg:w-6 lg:h-6 flex-none text-primary" viewBox="0 0 20 20" fill="currentColor"
-               aria-hidden="true">
-            <path
-              d="M3.505 2.365A41.369 41.369 0 019 2c1.863 0 3.697.124 5.495.365 1.247.167 2.18 1.108 2.435 2.268a4.45 4.45 0 00-.577-.069 43.141 43.141 0 00-4.706 0C9.229 4.696 7.5 6.727 7.5 8.998v2.24c0 1.413.67 2.735 1.76 3.562l-2.98 2.98A.75.75 0 015 17.25v-3.443c-.501-.048-1-.106-1.495-.172C2.033 13.438 1 12.162 1 10.72V5.28c0-1.441 1.033-2.717 2.505-2.914z"/>
-            <path
-              d="M14 6c-.762 0-1.52.02-2.271.062C10.157 6.148 9 7.472 9 8.998v2.24c0 1.519 1.147 2.839 2.71 2.935.214.013.428.024.642.034.2.009.385.09.518.224l2.35 2.35a.75.75 0 001.28-.531v-2.07c1.453-.195 2.5-1.463 2.5-2.915V8.998c0-1.526-1.157-2.85-2.729-2.936A41.645 41.645 0 0014 6z"/>
-          </svg>
-        </div>
-        <div class="col-span-5 lg:col-span-0">
-          <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-gray-100">{% translate "Headline 3" %}</h3>
-          <p class="text-gray-500 dark:text-gray-400">{% translate "Short explanation of headline 3" %}</p>
-        </div>
+      <div class="border-t border-base-content/10 pt-6">
+        {% include "web/components/feature_item.html" with icon="fa-solid fa-bullseye" title=_("Stay focused") description=_("A simple interface that shows what matters and stays out of the way.") %}
       </div>
     </div>
   </div>
