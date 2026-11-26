@@ -30,7 +30,7 @@ jobs:
           python-version: 3.14
       - name: Install Dependencies
         run: |
-          uv sync --frozen
+          uv sync --locked
       - name: Run Type Checking
         run: |
           uv run mypy .
@@ -79,7 +79,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install Dependencies
         run: |
-          uv sync --frozen
+          uv sync --locked
 
       - name: Run Tests
         env:

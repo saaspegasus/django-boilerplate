@@ -1,14 +1,18 @@
 {% load i18n %}
-<div class="bg-indigo-50 dark:bg-indigo-900">
-  <div class="mx-auto max-w-7xl py-12 px-6 lg:flex lg:items-center lg:justify-between lg:py-24 lg:px-8">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 md:text-4xl">
-      <span class="block">{% translate "Ready to dive in?" %}</span>
-      <span class="block text-primary">{% translate "Get your first customer in minutes." %}</span>
-    </h2>
-    <div class="mt-8 flex lg:mt-0 lg:shrink-0">
-      <div class="inline-flex rounded-md shadow-2xs">
-        <a href="{% url 'account_signup' %}" class="btn btn-primary">{% translate "Get started" %}</a>
+<section>
+  <div class="mx-auto max-w-7xl px-6 py-16 sm:py-24 lg:px-8">
+    <div class="rounded-box bg-primary px-6 py-12 text-primary-content sm:px-12 sm:py-16 lg:flex lg:items-center lg:justify-between lg:gap-8">
+      <div class="max-w-2xl">
+        <h2 class="text-3xl font-bold tracking-tight text-balance sm:text-4xl">
+          {% translate "Ready to give it a try?" %}
+        </h2>
+        <p class="mt-4 text-lg text-primary-content/80">
+          {% translate "It only takes a minute to set up. We think you'll like it here." %}
+        </p>
       </div>
+      <a href="{% url 'account_signup' %}" class="btn btn-lg mt-8 shrink-0 border-0 text-base-content [--btn-color:var(--color-base-100)] lg:mt-0">
+        {% translate "Create an account" %}
+      </a>
     </div>
   </div>
-</div>
+</section>
